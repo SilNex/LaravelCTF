@@ -12,4 +12,12 @@ class Challenge extends Model
     protected $hidden = [
         'flag'
     ];
+
+    public function file() {
+        return $this->hasMany('App\File');
+    }
+
+    public function HallOfFame() {
+        return $this->hasMany('App\HallOfFame');
+    }
 }
