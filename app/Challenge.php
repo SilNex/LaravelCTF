@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Chellenge extends Model
+class Challenge extends Model
 {
     protected $fillable = [
         'name', 'email', 'password', 'score'
