@@ -23,3 +23,9 @@ $factory->define(App\User::class, function (Faker $faker) {
         'remember_token' => Str::random(10),
     ];
 });
+
+$factory->state(App\User::class, 'random_score',function (Faker $fake) {
+    return factory(App\User::class)->make()->toArray() + [
+        'score' => rand(0, 100) * 10,
+    ];
+});
