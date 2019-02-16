@@ -15,6 +15,9 @@ class CreateHallOfFamesTable extends Migration
     {
         Schema::create('hall_of_fames', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('point');
+            $table->unsignedInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }
