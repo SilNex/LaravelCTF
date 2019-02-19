@@ -19,6 +19,7 @@ class CreateChallengesTable extends Migration
             $table->string('title');
             $table->string('link')->nullable();
             $table->text('description')->default('');
+            $table->string('genre');
             $table->timestamp('show_time')->default(now());
             $table->unsignedInteger('hall_of_fame_id')->nullable();
             $table->timestamps();
