@@ -6,12 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Challenge extends Model
 {
-    protected $fillable = [
-        'name', 'email', 'password', 'score'
-    ];
-    protected $hidden = [
-        'flag'
-    ];
+    protected $guarded = ['id'];
+    protected $hidden = ['flag'];
 
     public function file()
     {
