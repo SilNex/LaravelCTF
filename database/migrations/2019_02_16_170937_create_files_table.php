@@ -17,6 +17,8 @@ class CreateFilesTable extends Migration
             $table->increments('id');
             $table->text('path');
             $table->string('original_name');
+            $table->unsignedInteger('challenge_id');
+            $table->foreign('challenge_id')->references('id')->on('challenges')->onDelete('cascade');
             $table->timestamps();
         });
     }

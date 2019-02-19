@@ -19,8 +19,8 @@ class CreateScoresTable extends Migration
             $table->unsignedInteger('challenge_id');
             $table->unsignedInteger('log_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('challenge_id')->references('id')->on('challenge')->onDelete('cascade');
-            $table->foreign('log_id')->references('id')->on('logs')->onDelete('cascade');
+            $table->foreign('challenge_id')->references('id')->on('challenges')->onDelete('cascade');
+            $table->foreign('log_id')->references('id')->on('score_logs')->onDelete('cascade');
             $table->timestamps();
         });
     }

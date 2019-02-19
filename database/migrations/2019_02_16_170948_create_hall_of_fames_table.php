@@ -17,7 +17,9 @@ class CreateHallOfFamesTable extends Migration
             $table->increments('id');
             $table->integer('point');
             $table->unsignedInteger('user_id');
+            $table->unsignedInteger('challenge_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('challenge_id')->references('id')->on('challenges')->onDelete('cascade');
             $table->timestamps();
         });
     }

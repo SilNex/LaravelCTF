@@ -8,7 +8,8 @@ class File extends Model
 {
     protected $fillable = ['path', 'name'];
 
-    public function challenge() {
+    public function challenge()
+    {
         return $this->belongsTo('App\Challenge');
     }
 }

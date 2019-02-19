@@ -13,11 +13,13 @@ class Challenge extends Model
         'flag'
     ];
 
-    public function file() {
+    public function file()
+    {
         return $this->hasMany('App\File');
     }
 
-    public function HallOfFame() {
+    public function HallOfFame()
+    {
         return $this->hasMany('App\HallOfFame');
     }
 }
