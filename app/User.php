@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'score'
+        'name', 'email', 'password', 'score', 'privilege'
     ];
 
     /**
@@ -36,6 +36,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function isAdmin() {
+        if ($this->privilege > 9) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
     public function score()
     {

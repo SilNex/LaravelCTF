@@ -15,7 +15,6 @@ class ChallengeController extends Controller
     public function index()
     {
         $challenges = Challenge::all();
-        
         return response()->json($challenges);
     }
 
