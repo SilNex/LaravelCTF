@@ -17,6 +17,7 @@ class CreateChallengesTable extends Migration
             $table->increments('id');
             $table->integer('point');
             $table->string('title');
+            $table->string('flag');
             $table->string('link')->nullable();
             $table->text('description')->default('');
             $table->string('genre');
