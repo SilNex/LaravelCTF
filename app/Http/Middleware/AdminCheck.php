@@ -3,7 +3,6 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use App\User;
 use Illuminate\Support\Facades\Auth;
 
 class AdminCheck
@@ -17,9 +16,9 @@ class AdminCheck
      */
     public function handle($request, Closure $next)
     {
-        if (Auth::check()) {
-            dd(Auth::user()->isAdmin());
+        if (Auth::check() && Auth::user()->isAdmin()) {
+            return $next($request);
         }
-        return $next($request);
+        return abort(403, 'Your not Admin!');
     }
 }
