@@ -10,6 +10,7 @@ $factory->define(App\Challenge::class, function (Faker $faker) {
         'link' => $faker->url,
         'description' => $krFaker->paragraph,
         'genre' => $faker->word,
+        'flag' => $faker->sentence,
         'show_time' => $faker->dateTimeBetween($startDate = '-2 years', $endDate = 'now'),
     ];
 });
