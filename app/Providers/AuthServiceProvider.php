@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use App\Challenge;
+use App\Policies\ChallengePolicy;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -25,6 +27,6 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        Gate::define('view', 'App\Policies\ChallengePolicy@view');
     }
 }

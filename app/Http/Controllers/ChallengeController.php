@@ -11,7 +11,6 @@ class ChallengeController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('admin')->except('index');
     }
 
     /**
@@ -22,6 +21,7 @@ class ChallengeController extends Controller
     public function index()
     {
         $challenges = Challenge::all();
+        dd(auth()->user()->can('view'));
         return response()->json($challenges);
     }
 
