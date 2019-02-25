@@ -19,4 +19,5 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::resource('challenge', 'ChallengeController');
+Route::apiResource('challenges', 'ChallengeController');
+
