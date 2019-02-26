@@ -4,13 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Challenge;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class ChallengeController extends Controller
 {
 
     public function __construct()
     {
-        $this->middleware('auth');
+        // $this->middleware('auth');
     }
 
     /**
@@ -21,7 +22,10 @@ class ChallengeController extends Controller
     public function index()
     {
         $challenges = Challenge::all();
-        dd(auth()->user()->can('view'));
+        $this->authorize('view', $challenges->random());
+        // if(Gate::denies('view', $challenges->random())) {
+        //     dd('why!');
+        // }
         return response()->json($challenges);
     }
 

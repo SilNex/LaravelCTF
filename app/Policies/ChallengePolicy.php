@@ -18,11 +18,9 @@ class ChallengePolicy
      * @param  \App\Challenge  $challenge
      * @return mixed
      */
-    public function view(User $user)
+    public function view(User $user, Challenge $challenge)
     {
-        if ($user->isAdmin()) {
-            return true;
-        }
+        return $user->isAdmin();
     }
 
     /**

@@ -15,7 +15,7 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        'App\Model' => 'App\Policies\ModelPolicy',
+        'App\Challenge' => 'App\Policies\ChallengePolicy',
     ];
 
     /**
@@ -27,6 +27,6 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        Gate::define('view', 'App\Policies\ChallengePolicy@view');
+        // 
     }
 }
