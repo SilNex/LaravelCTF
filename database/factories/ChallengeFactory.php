@@ -11,6 +11,6 @@ $factory->define(App\Challenge::class, function (Faker $faker) {
         'description' => $krFaker->paragraph,
         'genre' => $faker->word,
         'flag' => $faker->sentence,
-        'show_time' => $faker->dateTimeBetween($startDate = '-2 years', $endDate = 'now'),
+        'show_at' => $faker->dateTimeBetween($startDate = '-2 years', $endDate = 'now'),
     ];
 });

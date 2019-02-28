@@ -21,7 +21,7 @@ class CreateChallengesTable extends Migration
             $table->string('link')->nullable();
             $table->text('description')->nullable();
             $table->string('genre');
-            $table->timestamp('show_time')->default(now());
+            $table->timestamp('show_at')->default(now());
             $table->timestamps();
         });
     }
