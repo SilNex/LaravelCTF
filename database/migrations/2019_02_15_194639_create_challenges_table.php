@@ -19,10 +19,9 @@ class CreateChallengesTable extends Migration
             $table->string('title');
             $table->string('flag');
             $table->string('link')->nullable();
-            $table->text('description')->default('');
+            $table->text('description')->nullable();
             $table->string('genre');
             $table->timestamp('show_time')->default(now());
-            $table->unsignedInteger('hall_of_fame_id')->nullable();
             $table->timestamps();
         });
     }
