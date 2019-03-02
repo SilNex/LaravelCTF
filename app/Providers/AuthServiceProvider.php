@@ -2,10 +2,8 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
-use App\Challenge;
-use App\Policies\ChallengePolicy;
+use Illuminate\Support\Facades\Gate;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -15,7 +13,7 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        // 'App\Challenge' => 'App\Policies\ChallengePolicy',
+        'App\Challenge' => 'App\Policies\ChallengePolicy',
     ];
 
     /**
@@ -27,6 +25,10 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        // 
+        Gate::before(function ($user) {
+            if ($user->isAdmin()) {
+                return true;
+            }
+        });
     }
 }
