@@ -13,7 +13,7 @@ class StoreChallenge extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,19 @@ class StoreChallenge extends FormRequest
     public function rules()
     {
         return [
-            //
+            'point' => ['required', 'integer', 'min:0'],
+            'title' => ['required', 'max:255', 'string'],
+            'flag' => [
+                'sometimes' => 'required'
+            ],
+            'link' => ['url'],
+            'description' => [],
+            'genre' => ['required','max:255', 'string'],
+            'show_at' => [
+                'sometimes',
+                'date_format:Y-m-d H:i:s',
+                'after_or_equal:today',
+            ],
         ];
     }
 }

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Challenge;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Gate;
+use App\Http\Requests\StoreChallenge;
 
 class ChallengeController extends Controller
 {
@@ -23,9 +23,6 @@ class ChallengeController extends Controller
     {
         $challenges = Challenge::all();
         $this->authorize('view', $challenges->random());
-        // if(Gate::denies('view', $challenges->random())) {
-        //     dd('why!');
-        // }
         return response()->json($challenges);
     }
 
@@ -35,9 +32,10 @@ class ChallengeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreChallenge $request)
     {
-        
+        dd($request);
+        // return response()->json(->messages());
     }
 
     /**
