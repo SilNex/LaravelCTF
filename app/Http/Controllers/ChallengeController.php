@@ -34,8 +34,8 @@ class ChallengeController extends Controller
      */
     public function store(StoreChallenge $request)
     {
-        dd($request);
-        // return response()->json(->messages());
+        // dd($request->validated());
+        return response()->json($request);
     }
 
     /**
