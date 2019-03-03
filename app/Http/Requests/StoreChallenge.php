@@ -11,7 +11,7 @@ trait JsonFormRequest
     /**
      * @param Validator $validator
      */
-    public function failedValidation(Validator $validator) {
+    protected function failedValidation(Validator $validator) {
         //write your business logic here otherwise it will give same old JSON response
         throw new HttpResponseException(response()->json($validator->errors(), 422));
     }
