@@ -11,7 +11,8 @@ trait JsonFormRequest
     /**
      * @param Validator $validator
      */
-    protected function failedValidation(Validator $validator) {
+    protected function failedValidation(Validator $validator)
+    {
         //write your business logic here otherwise it will give same old JSON response
         throw new HttpResponseException(response()->json($validator->errors(), 422));
     }
@@ -19,7 +20,7 @@ trait JsonFormRequest
 
 class StoreChallenge extends FormRequest
 {
-    
+
     use JsonFormRequest;
 
     /**
@@ -58,9 +59,12 @@ class StoreChallenge extends FormRequest
 
     public function messages()
     {
+        // crate post sub array to key value
         return [
-            'point.min' => '포인트는 0 이상 입력이 가능합니다',
+            // 'point' => [
+            //     '.min' => '포인트는 0 이상 입력이 가능합니다.',
+            //     '.integer' => '포인트는 정수만 입력이 가능합니다.',
+            // ],
         ];
     }
-
 }
