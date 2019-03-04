@@ -59,12 +59,28 @@ class StoreChallenge extends FormRequest
 
     public function messages()
     {
+        function arrayMessages($messages)
+        {
+            $result = [];
+            foreach ($messages as $key => $msg) {
+                if ("string" === gettype($msg)) {
+                    $result += [$key => $msg];
+                } elseif ("array" === gettype($msg)) {
+                    $msgs = arrayMessages($msg);
+                    foreach ($msgs as $subKey => $subMsg) {
+                        $result += [$key . $subKey => $subMsg];
+                    }
+                }
+            }
+            return $result;
+        }
         // crate post sub array to key value
-        return [
-            // 'point' => [
-            //     '.min' => '포인트는 0 이상 입력이 가능합니다.',
-            //     '.integer' => '포인트는 정수만 입력이 가능합니다.',
-            // ],
-        ];
+        return arrayMessages([
+            'point' => [
+                '.min' => '포인트는 0 이상 입력이 가능합니다.',
+                '.integer' => '포인트는 정수만 입력이 가능합니다.',
+            ],
+            'title' => '타이틀 에러 메시지',
+        ]);
     }
 }
