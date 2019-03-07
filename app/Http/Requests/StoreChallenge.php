@@ -3,25 +3,14 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Contracts\Validation\Validator;
-use Illuminate\Http\Exceptions\HttpResponseException;
+use App\Helpers\JsonFormRequest;
+use App\Helpers\FormRequestFunctions;
 
-trait JsonFormRequest
-{
-    /**
-     * @param Validator $validator
-     */
-    protected function failedValidation(Validator $validator)
-    {
-        //write your business logic here otherwise it will give same old JSON response
-        throw new HttpResponseException(response()->json($validator->errors(), 422));
-    }
-}
 
 class StoreChallenge extends FormRequest
 {
-
     use JsonFormRequest;
+    use FormRequestFunctions;
 
     /**
      * Determine if the user is authorized to make this request.
@@ -43,9 +32,7 @@ class StoreChallenge extends FormRequest
         return [
             'point' => ['required', 'integer', 'min:0'],
             'title' => ['required', 'max:255', 'string'],
-            'flag' => [
-                'sometimes' => 'required'
-            ],
+            'flag' => ['required', 'string'],
             'link' => ['url'],
             'description' => [],
             'genre' => ['required', 'max:255', 'string'],
@@ -59,28 +46,29 @@ class StoreChallenge extends FormRequest
 
     public function messages()
     {
-        function arrayMessages($messages)
-        {
-            $result = [];
-            foreach ($messages as $key => $msg) {
-                if ("string" === gettype($msg)) {
-                    $result += [$key => $msg];
-                } elseif ("array" === gettype($msg)) {
-                    $msgs = arrayMessages($msg);
-                    foreach ($msgs as $subKey => $subMsg) {
-                        $result += [$key . $subKey => $subMsg];
-                    }
-                }
-            }
-            return $result;
-        }
         // crate post sub array to key value
-        return arrayMessages([
+        return $this->arrayMessages([
             'point' => [
-                '.min' => '포인트는 0 이상 입력이 가능합니다.',
+                '.required' => 'point가 비여있습니다.',
+                '.min' => '포인트는 :min 이상 입력이 가능합니다.',
                 '.integer' => '포인트는 정수만 입력이 가능합니다.',
             ],
-            'title' => '타이틀 에러 메시지',
+            'title' => [
+                '.required' => 'title이 비여있습니다.',
+                '.max' => 'title은 :max 이하로 입력이 가능합니다.',
+                '.string' => 'title은 문자열만 입력이 가능합니다.',
+            ],
+            'flag' => 'flag는 문자열만 입력이 가능합니다.',
+            'link' => '올바르지않은 url 타입입니다.',
+            'genre' => [
+                '.required' => 'genre가 비여있습니다.',
+                '.max' => 'genre는 :max 이하로 입력이 가능합니다.',
+                '.string' => 'genre는 문자열만 입력이 가능합니다.',
+            ],
+            'show_at' => [
+                '.date_format' => '시간은 ('.date('Y-m-d H:i:s').')형식으로 입력이 가능합니다.',
+                '.after_or_equal' => '현재시간보다 이전시간으로 설정 하실 수 없습니다.',
+            ]
         ]);
     }
 }
