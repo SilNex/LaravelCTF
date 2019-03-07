@@ -14,22 +14,23 @@ trait JsonFormRequest
     }
 }
 
-trait FormRequestFunctions
-{
-    public function arrayMessages($messages)
-    {
-        $result = [];
-        foreach ($messages as $key => $msg) {
-            if ("string" === gettype($msg)) {
-                $result += [$key => $msg];
-            } elseif ("array" === gettype($msg)) {
-                $msgs = $this->arrayMessages($msg);
-                foreach ($msgs as $subKey => $subMsg) {
-                    $result += [$key . $subKey => $subMsg];
-                }
-            }
-        }
-        return $result;
-    }
-}
+/** Not need */
+// trait FormRequestFunctions
+// {
+//     public function arrayMessages($messages)
+//     {
+//         $result = [];
+//         foreach ($messages as $key => $msg) {
+//             if ("string" === gettype($msg)) {
+//                 $result += [$key => $msg];
+//             } elseif ("array" === gettype($msg)) {
+//                 $msgs = $this->arrayMessages($msg);
+//                 foreach ($msgs as $subKey => $subMsg) {
+//                     $result += [$key . $subKey => $subMsg];
+//                 }
+//             }
+//         }
+//         return $result;
+//     }
+// }
 
