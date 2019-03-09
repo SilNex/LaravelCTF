@@ -34,8 +34,10 @@ class ChallengeController extends Controller
      */
     public function store(StoreChallenge $request)
     {
-        // dd($request->validated());
-        return response()->json($request);
+        $challenge = $request->validated();
+        $challenge['flag'] = hash('sha256', $request->flag);
+
+        return Challenge::create($challenge);
     }
 
     /**
@@ -46,7 +48,15 @@ class ChallengeController extends Controller
      */
     public function show(Challenge $challenge)
     {
-        //
+        if (now() < $challenge->show_at) {
+            return response()->json([
+                'message' => __('challenge.before_show_at', [
+                    'date' => $challenge->show_at
+                ]),
+            ]);
+        } else {
+            return $challenge;
+        }
     }
 
     /**
