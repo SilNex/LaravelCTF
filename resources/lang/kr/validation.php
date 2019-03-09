@@ -4,152 +4,145 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | 유효성 검사 반환 한글화
+    | Validation Language Lines
     |--------------------------------------------------------------------------
     |
-    | KEY & VALUE 형식의 배열로 정의합니다.
-    | KEY에는 유효 검사명을 입력하세요. VALUE는 한글 반환 에러 메시지를 정의해주세요.
-    | 속성 정의는 하단의 attribute 정의에서 한글화 시켜주세요.
+    | The following language lines contain the default error messages used by
+    | the validator class. Some of these rules have multiple versions such
+    | as the size rules. Feel free to tweak each of these messages here.
     |
     */
 
-    'accepted' => ':attribute을(를) 반드시 동의해야 합니다.',
+    'accepted' => ':attribute을(를) 동의해야 합니다.',
     'active_url' => ':attribute은(는) 유효한 URL이 아닙니다.',
-    'after' => ':attribute은(는) 반드시 :date 이후 날짜여야 합니다.',
-    'after_or_equal' => ':attribute은(는) 반드시 :date 와 같거나 이후 날짜여야 합니다.',
+    'after' => ':attribute은(는) :date 이후 날짜여야 합니다.',
+    'after_or_equal' => ':attribute은(는) :date 이후 날짜이거나 같은 날짜여야 합니다.',
     'alpha' => ':attribute은(는) 문자만 포함할 수 있습니다.',
     'alpha_dash' => ':attribute은(는) 문자, 숫자, 대쉬(-)만 포함할 수 있습니다.',
     'alpha_num' => ':attribute은(는) 문자와 숫자만 포함할 수 있습니다.',
-    'array' => ':attribute은(는) 반드시 배열이어야 합니다.',
-    'before' => ':attribute은(는) 반드시 :date 이전 날짜여야 합니다.',
-    'before_or_equal' => ':attribute은(는) 반드시 :date 와 같거나 이전날짜여야 합니다.',
+    'array' => ':attribute은(는) 배열이어야 합니다.',
+    'before' => ':attribute은(는) :date 이전 날짜여야 합니다.',
+    'before_or_equal' => ':attribute은(는) :date 이전 날짜이거나 같은 날짜여야 합니다.',
     'between' => [
-        'numeric' => ':attribute은(는) 반드시 :min에서 :max 사이여야 합니다.',
-        'file' => ':attribute은(는) 반드시 :min에서 :max 킬로바이트 사이여야 합니다.',
-        'string' => ':attribute은(는) 반드시 :min에서 :max 문자 사이여야 합니다.',
-        'array' => ':attribute은(는) 반드시 :min에서 :max 아이템 사이여야 합니다.',
+        'numeric' => ':attribute은(는) :min에서 :max 사이여야 합니다.',
+        'file' => ':attribute은(는) :min에서 :max 킬로바이트 사이여야 합니다.',
+        'string' => ':attribute은(는) :min에서 :max 문자 사이여야 합니다.',
+        'array' => ':attribute은(는) :min에서 :max 개의 항목이 있어야 합니다.',
     ],
-    'boolean' => ':attribute은(는) 반드시 true 또는 false 여야 합니다.',
+    'boolean' => ':attribute은(는) true 또는 false 이어야 합니다.',
     'confirmed' => ':attribute 확인 항목이 일치하지 않습니다.',
     'date' => ':attribute은(는) 유효한 날짜가 아닙니다.',
-    'date_equals' => ':attribute은(는) must be a date equal to :date.',
-    'date_format' => ':attribute은(는) :format 형식과 일치하지 않습니다.',
-    'different' => ':attribute와(과) :other은(는) 반드시 서로 달라야 합니다.',
-    'digits' => ':attribute은(는) 반드시 :digits 자릿수여야 합니다.',
-    'digits_between' => ':attribute은(는) 반드시 :min에서 :max 자릿수 사이여야 합니다.',
-    'dimensions' => ':attribute은(는) has invalid image dimensions.',
-    'distinct' => ':attribute은(는) field has a duplicate value.',
-    'email' => ':attribute 형식은 유효하지 않습니다.',
+    'date_equals' => ':attribute의 날짜는 :date와(과) 같아야 합니다.',
+    'date_format' => ':attribute이(가) :format 형식과 일치하지 않습니다.',
+    'different' => ':attribute와(과) :other은(는) 서로 달라야 합니다.',
+    'digits' => ':attribute은(는) :digits 자리 숫자여야 합니다.',
+    'digits_between' => ':attribute)은(는) :min에서 :max 자리 사이여야 합니다.',
+    'dimensions' => ':attribute은(는) 유효하지 않는 이미지 크기입니다.',
+    'distinct' => ':attribute 필드에 중복된 값이 있습니다.',
+    'email' => ':attribute은(는) 유효한 이메일 주소여야 합니다.',
     'exists' => '선택된 :attribute은(는) 유효하지 않습니다.',
-    'file' => ':attribute은(는) must be a file.',
-    'filled' => ':attribute 필드는 필수입니다.',
+    'file' => ':attribute은(는) 파일이어야 합니다.',
+    'filled' => ':attribute 필드는 값이 있어야 합니다.',
     'gt' => [
-        'numeric' => ':attribute은(는) 반드시 :value 보다 커야 합니다.',
-        'file' => ':attribute은(는) 반드시 :value KB 보다 커야 합니다.',
-        'string' => ':attribute은(는) 반드시 :value자 보다 커야 합니다.',
-        'array' => ':attribute은(는) 반드시 :value개 보다 커야 합니다.',
+        'numeric' => ':attribute의 값은 :value보다 커야 합니다.',
+        'file' => ':attribute의 용량은 :value킬로바이트보다 커야 합니다.',
+        'string' => ':attribute의 길이는 :value보다 길어야 합니다.',
+        'array' => ':attribute의 항목수는 :value개 보다 많아야 합니다.',
     ],
     'gte' => [
-        'numeric' => ':attribute은(는) 반드시 :value 이상이어야 합니다.',
-        'file' => ':attribute은(는) 반드시 :value KB 이상이어야 합니다.',
-        'string' => ':attribute은(는) 반드시 :value자 이상이어야 합니다.',
-        'array' => ':attribute은(는) 반드시 :value개 이상이어야 합니다.',
+        'numeric' => ':attribute의 값은 :value보다 같거나 커야 합니다.',
+        'file' => ':attribute의 용량은 :value킬로바이트보다 같거나 커야 합니다.',
+        'string' => ':attribute의 길이는 :value보다 같거나 길어야 합니다.',
+        'array' => ':attribute의 항목수는 :value개 보다 같거나 많아야 합니다.',
     ],
-    'image' => ':attribute은(는) 반드시 이미지여야 합니다.',
-    'in' => '선택한 :attribute은(는) 잘못된 값입니다.',
-    'in_array' => ':other 안에 :attribute이(가) 없습니다.',
-    'integer' => ':attribute은(는) 반드시 must be an integer.',
-    'ip' => ':attribute은(는) 반드시 must be a valid IP address.',
-    'ipv4' => ':attribute은(는) 반드시 must be a valid IPv4 address.',
-    'ipv6' => ':attribute은(는) 반드시 must be a valid IPv6 address.',
-    'json' => ':attribute은(는) 반드시 must be a valid JSON string.',
+    'image' => ':attribute은(는) 이미지여야 합니다.',
+    'in' => '선택된 :attribute은(는) 유효하지 않습니다.',
+    'in_array' => ':attribute 필드는 :other에 존재하지 않습니다.',
+    'integer' => ':attribute은(는) 정수여야 합니다.',
+    'ip' => ':attribute은(는) 유효한 IP 주소여야 합니다.',
+    'ipv4' => ':attribute은(는) 유효한 IPv4 주소여야 합니다.',
+    'ipv6' => ':attribute은(는) 유효한 IPv6 주소여야 합니다.',
+    'json' => ':attribute은(는) JSON 문자열이어야 합니다.',
     'lt' => [
-        'numeric' => ':attribute은(는) 반드시 must be less than :value.',
-        'file' => ':attribute은(는) 반드시 must be less than :value kilobytes.',
-        'string' => ':attribute은(는) 반드시 must be less than :value characters.',
-        'array' => ':attribute은(는) 반드시 must have less than :value items.',
+        'numeric' => ':attribute의 값은 :value보다 작아야 합니다.',
+        'file' => ':attribute의 용량은 :value킬로바이트보다 작아야 합니다.',
+        'string' => ':attribute의 길이는 :value보다 짧아야 합니다.',
+        'array' => ':attribute의 항목수는 :value개 보다 작아야 합니다.',
     ],
     'lte' => [
-        'numeric' => ':attribute은(는) 반드시 must be less than or equal :value.',
-        'file' => ':attribute은(는) 반드시 must be less than or equal :value kilobytes.',
-        'string' => ':attribute은(는) 반드시 must be less than or equal :value characters.',
-        'array' => ':attribute은(는) 반드시 must not have more than :value items.',
+        'numeric' => ':attribute의 값은 :value보다 같거나 작아야 합니다.',
+        'file' => ':attribute의 용량은 :value킬로바이트보다 같거나 작아야 합니다.',
+        'string' => ':attribute의 길이는 :value보다 같거나 짧아야 합니다.',
+        'array' => ':attribute의 항목수는 :value개 보다 같거나 작아야 합니다.',
     ],
     'max' => [
-        'numeric' => ':attribute은(는) 반드시 :max 보다 작아야 합니다.',
-        'file' => ':attribute은(는) 반드시 :max 킬로바이트보다 작아야 합니다.',
-        'string' => ':attribute은(는) 반드시 :max 자리보다 작아야 합니다.',
-        'array' => ':attribute은(는) 반드시 :max 아이템보다 작아야 합니다.',
+        'numeric' => ':attribute은(는) :max보다 클 수 없습니다.',
+        'file' => ':attribute은(는) :max킬로바이트보다 클 수 없습니다.',
+        'string' => ':attribute은(는) :max자보다 클 수 없습니다.',
+        'array' => ':attribute은(는) :max개보다 많을 수 없습니다.',
     ],
-    'mimes' => ':attribute은(는) 반드시 다음의 파일 타입이어야 합니다: :values.',
-    'mimetypes' => ':attribute은(는) must be a file of type: :values.',
+    'mimes' => ':attribute은(는) 다음의 파일 형식이어야 합니다: :values.',
+    'mimetypes' => ':attribute은(는) 다음의 파일 형식이어야 합니다: :values.',
     'min' => [
-        'numeric' => ':attribute은(는) 반드시 :min 보다 커야 합니다.',
-        'file' => ':attribute은(는) 반드시 :min 킬로바이트보다 커야 합니다.',
-        'string' => ':attribute은(는) 반드시 :min 자리보다 커야 합니다.',
-        'array' => ':attribute은(는) 반드시 :max 아이템보다 커야 합니다.',
+        'numeric' => ':attribute은(는) 최소한 :min이어야 합니다.',
+        'file' => ':attribute은(는) 최소한 :min킬로바이트이어야 합니다.',
+        'string' => ':attribute은(는) 최소한 :min자이어야 합니다.',
+        'array' => ':attribute은(는) 최소한 :min개의 항목이 있어야 합니다.',
     ],
-    'not_in' => '선택된 :attribute은(는) 유효하지 않습니다.',
-    'not_regex' => ':attribute은(는) format is invalid.',
-    'numeric' => ':attribute은(는) 반드시 숫자여야 합니다.',
-    'present' => ':attribute은(는) field must be present.',
-    'regex' => ':attribute 형식은 유효하지 않습니다.',
+    'not_in' => '선택된 :attribute이(가) 유효하지 않습니다.',
+    'not_regex' => ':attribute의 형식이 올바르지 않습니다.',
+    'numeric' => ':attribute은(는) 숫자여야 합니다.',
+    'present' => ':attribute 필드가 있어야 합니다.',
+    'regex' => ':attribute 형식이 유효하지 않습니다.',
     'required' => ':attribute 필드는 필수입니다.',
-    'required_if' => ':other이(가) :value 일때 :attribute 필드는 필수입니다.',
-    'required_unless' => ':attribute은(는) field is required unless :other is in :values.',
-    'required_with' => ':values이(가) 있을 경우 :attribute 필드는 필수입니다.',
-    'required_with_all' => ':values이(가) 있을 경우 :attribute 필드는 필수입니다.',
-    'required_without' => ':values이(가) 없을 경우 :attribute 필드는 필수입니다.',
-    'required_without_all' => 'T:values이(가) 없을 경우 :attribute 필드는 필수입니다.',
-    'same' => ':attribute와(과) :other은(는) 반드시 일치해야 합니다.',
+    'required_if' => ':other이(가) :value 일 때 :attribute 필드는 필수입니다.',
+    'required_unless' => ':other이(가) :values에 없다면 :attribute 필드는 필수입니다.',
+    'required_with' => ':values이(가) 있는 경우 :attribute 필드는 필수입니다.',
+    'required_with_all' => ':values이(가) 모두 있는 경우 :attribute 필드는 필수입니다.',
+    'required_without' => ':values이(가) 없는 경우 :attribute 필드는 필수입니다.',
+    'required_without_all' => ':values이(가) 모두 없는 경우 :attribute 필드는 필수입니다.',
+    'same' => ':attribute와(과) :other은(는) 일치해야 합니다.',
     'size' => [
-        'numeric' => ':attribute은(는) 반드시 :size (이)여야 합니다.',
-        'file' => ':attribute은(는) 반드시 :size 킬로바이트여야 합니다.',
-        'string' => ':attribute은(는) 반드시 :size 자릿수여야 합니다.',
-        'array' => ':attribute은(는) 반드시 :max 개의 아이템을 포함해야 합니다.',
+        'numeric' => ':attribute은(는) :size (이)여야 합니다.',
+        'file' => ':attribute은(는) :size킬로바이트여야 합니다.',
+        'string' => ':attribute은(는) :size자여야 합니다.',
+        'array' => ':attribute은(는) :size개의 항목을 포함해야 합니다.',
     ],
-    'starts_with' => ':attribute must start with one of the following: :values',
-    'string' => ':attribute must be a string.',
-    'timezone' => ':attribute must be a valid zone.',
-    'unique' => ':attribute은(는) 이미 사용중 입니다.',
-    'uploaded' => ':attribute failed to upload.',
+    'starts_with' => ':attribute은(는) :values 중 하나로 시작해야 합니다.',
+    'string' => ':attribute은(는) 문자열이어야 합니다.',
+    'timezone' => ':attribute은(는) 올바른 시간대 이어야 합니다.',
+    'unique' => ':attribute은(는) 이미 사용 중입니다.',
+    'uploaded' => ':attribute을(를) 업로드하지 못했습니다.',
     'url' => ':attribute 형식은 유효하지 않습니다.',
-    'uuid' => ':attribute은(는) must be a valid UUID.',
-
+    'uuid' => ':attribute는 유요한 UUID여야 합니다..',
     /*
     |--------------------------------------------------------------------------
-    | 사용자 정의 유효성 검사 언어 라인
+    | Custom Validation Language Lines
     |--------------------------------------------------------------------------
     |
     | Here you may specify custom validation messages for attributes using the
     | convention "attribute.rule" to name the lines. This makes it quick to
     | specify a specific custom language line for a given attribute rule.
     |
-    | 여기서 "attribute.rule"규칙을 사용하여 속성에 대한 사용자 정의 유효성 검사 메시지를 지정하여 행의 이름을 지정할 수 있습니다. 이렇게하면 특정 속성 규칙에 대한 특정 사용자 정의 언어 행을 빠르게 지정할 수 있습니다.
     */
-
+    
     'custom' => [
         'attribute-name' => [
-            'rule-name' => '사용자-정의-메시지',
+            'rule-name' => 'custom-message',
         ],
     ],
+
     /*
     |--------------------------------------------------------------------------
-    | 속성 정의
+    | Custom Validation Attributes
     |--------------------------------------------------------------------------
     |
-    | KEY & VALUE 형식의 배열로 정의합니다.
-    | KEY에는 유효 속성명을 입력하세요.
-    | VALUE는 속성의 한글명을 입력해주세요
+    | The following language lines are used to swap our attribute placeholder
+    | with something more reader friendly such as "E-Mail Address" instead
+    | of "email". This simply helps us make our message more expressive.
     |
     */
-    'attributes' => [
-        'name' => '이름',
-        'email' => '이메일',
-        'password' => '비밀번호',
-        'password_confirmation' => '비밀번호 확인',
-        'title' => '제목',
-        'content' => '내용',
-        'tag' => '태그'
-    ],
+
+    'attributes' => [],
+
 ];
