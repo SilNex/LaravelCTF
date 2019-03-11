@@ -29,3 +29,14 @@ $factory->state(App\User::class, 'random_score',function (Faker $fake) {
         'score' => rand(0, 100) * 10,
     ];
 });
+
+$factory->state(App\User::class, 'silnex', function (Faker $faker) {
+    return [
+        'name' => 'silnex',
+        'email' => 'silnex@silnex.kr',
+        'email_verified_at' => now(),
+        'password' => bcrypt('asdf1234'),
+        'privilege' => 10,
+        'remember_token' => Str::random(10),
+    ];
+});
