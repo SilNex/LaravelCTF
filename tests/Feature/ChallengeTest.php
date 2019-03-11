@@ -55,21 +55,25 @@ class ChallengeTest extends TestCase
         $oldChallenge = factory(Challenge::class)
             ->create();
 
-        $newChallenge = [
-            'title' => 'newTitle',
-            'description' => 'newDescription',
-            'flag' => 'newFlag',
-            'point' => '1000',
-            'link' => 'http://new.link.com',
-            'genre' => 'newGenre',
-            'show_at' => now()->addDays(mt_rand(0, 30)),
-        ];
+        $newChallenge = factory(Challenge::class)
+            ->make()
+            ->makeVisible('flag');
 
         $response = $this
             ->actingAs($this->admin)
             ->json('PUT', "/challenge/{$oldChallenge->id}", $newChallenge);
         
         $response
-            ->assertStatus(202);
+            ->assertStatus(202)
+            ->assertJsonStructure([
+                'updated' => 'true',
+            ]);
+
+        $this
+            ->assertDatabaseHas('challenges', [
+                'id' => $oldChallenge->id,
+                'title' => $newChallenge->title,
+                'flag' => $newChallenge->flag
+            ]);
     }
 }
