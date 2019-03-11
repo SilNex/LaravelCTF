@@ -35,6 +35,8 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'scroe' => 'integer',
+        'privilege' => 'integer',
     ];
 
     public function isAdmin() {
