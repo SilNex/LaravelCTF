@@ -62,7 +62,7 @@ class ChallengeTest extends TestCase
         $response = $this
             ->actingAs($this->admin)
             ->json('PUT', "/challenge/{$oldChallenge->id}", $newChallenge);
-        
+
         $response
             ->assertStatus(202)
             ->assertJsonStructure([
