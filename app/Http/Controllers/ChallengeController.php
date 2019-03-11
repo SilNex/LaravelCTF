@@ -23,7 +23,8 @@ class ChallengeController extends Controller
     {
         $challenges = Challenge::all();
         $this->authorize('view', $challenges->random());
-        return response()->json($challenges);
+        return response()
+                    ->json($challenges);
     }
 
     /**
@@ -37,7 +38,10 @@ class ChallengeController extends Controller
         $challenge = $request->validated();
         $challenge['flag'] = hash('sha256', $request->flag);
 
-        return Challenge::create($challenge);
+        return response()
+                    ->json([
+                        'id' => Challenge::create($challenge)->id,
+                    ], 201);
     }
 
     /**
@@ -49,13 +53,14 @@ class ChallengeController extends Controller
     public function show(Challenge $challenge)
     {
         if (now() < $challenge->show_at) {
-            return response()->json([
+            return response(403)->json([
                 'message' => __('challenge.before_show_at', [
                     'date' => $challenge->show_at
                 ]),
             ]);
         } else {
-            return $challenge;
+            return response()
+                        ->json($challenge);
         }
     }
 

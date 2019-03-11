@@ -12,7 +12,7 @@ class ChallengeTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         $this->admin = factory(User::class)->create([
@@ -25,23 +25,51 @@ class ChallengeTest extends TestCase
     {
         $challenge = factory(Challenge::class)
             ->make()
-            ->makeVisible('flag')
-            ->toArray();
+            ->makeVisible('flag');
 
         $response = $this
             ->actingAs($this->admin)
-            ->post('/challenges', $challenge);
+            ->json('POST', '/challenges', $challenge->toArray());
 
         $response
             ->assertStatus(201)
-            ->assertJson([
-                'created' => true,
+            ->assertJsonStructure([
+                'id',
             ]);
 
         $this
             ->assertDatabaseHas('challenges', [
                 'title' => $challenge->title,
+                'description' => $challenge->description,
+            ]);
+
+        $this
+            ->assertDatabaseMissing('challenges', [
                 'flag' => $challenge->flag,
             ]);
+    }
+
+    /** @test */
+    function update_challenge()
+    {
+        $oldChallenge = factory(Challenge::class)
+            ->create();
+
+        $newChallenge = [
+            'title' => 'newTitle',
+            'description' => 'newDescription',
+            'flag' => 'newFlag',
+            'point' => '1000',
+            'link' => 'http://new.link.com',
+            'genre' => 'newGenre',
+            'show_at' => now()->addDays(mt_rand(0, 30)),
+        ];
+
+        $response = $this
+            ->actingAs($this->admin)
+            ->json('PUT', "/challenge/{$oldChallenge->id}", $newChallenge);
+        
+        $response
+            ->assertStatus(202);
     }
 }

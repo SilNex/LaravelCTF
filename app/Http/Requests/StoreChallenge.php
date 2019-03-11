@@ -8,7 +8,7 @@ use App\Helpers\JsonFormRequest;
 
 class StoreChallenge extends FormRequest
 {
-    use JsonFormRequest;
+    // use JsonFormRequest;
 
     /**
      * Determine if the user is authorized to make this request.
@@ -44,7 +44,6 @@ class StoreChallenge extends FormRequest
 
     public function messages()
     {
-        // crate post sub array to key value
         return [];
     }
 }
