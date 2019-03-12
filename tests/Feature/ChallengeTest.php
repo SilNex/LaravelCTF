@@ -21,7 +21,7 @@ class ChallengeTest extends TestCase
     }
 
     /** @test */
-    function create_challenge()
+    function createChallenge()
     {
         $challenge = factory(Challenge::class)
             ->make()
@@ -50,7 +50,7 @@ class ChallengeTest extends TestCase
     }
 
     /** @test */
-    function update_challenge()
+    function updateChallenge()
     {
         $oldChallenge = factory(Challenge::class)
             ->create();
