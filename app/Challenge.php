@@ -27,9 +27,10 @@ class Challenge extends Model
     public function show()
     {
         if ($this->checkVisible()) {
-            return $this;
+            return response()
+            ->json($this, $this->showStatus());
         } else {
-            return $this->errorMessages('before_show_at');
+            return $this->messages('before_show_at', true);
         }
     }
 
@@ -38,13 +39,19 @@ class Challenge extends Model
         return $this->checkVisible() ? 200 : 403;
     }
 
-    public function errorMessages($msgType)
+    public  function messages($msgType, $returnToArray = false)
     {
-        return [
-            "message" => __("challenge.{$msgType}", [
-                'date' => $this->show_at
-            ]),
-        ];
+        $message = __("challenge.{$msgType}", [
+            'date' => $this->show_at
+        ]);
+
+        if ($returnToArray) {
+            return [
+                "message" => $message,
+            ];
+        } else {
+            return $message;
+        }
     }
 
     public function checkVisible()
