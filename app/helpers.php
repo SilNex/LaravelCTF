@@ -14,6 +14,30 @@ trait JsonFormRequest
     }
 }
 
+trait UsesCustomErrorMessage
+{
+    /**
+   * Handle a failed validation attempt.
+   *
+   * @param  \Illuminate\Contracts\Validation\Validator  $validator
+   * @return void
+   *
+   * @throws \Illuminate\Http\Exceptions\HttpResponseException
+   */
+    protected function failedValidation(Validator $validator)
+    {
+        $message = (method_exists($this, 'message')) ? $this->container->call([$this, 'message']) : '잘못된 데이터 형식입니다.';
+
+        throw new HttpResponseException(
+            response()
+                ->json([
+                    'errors' => $validator->errors(),
+                    'message' => $message,
+                ], 422)
+        );
+    }
+}
+
 /** Not need */
 // trait FormRequestFunctions
 // {
@@ -33,4 +57,3 @@ trait JsonFormRequest
 //         return $result;
 //     }
 // }
-

@@ -55,10 +55,8 @@ class ChallengeController extends Controller
      */
     public function show(Challenge $challenge)
     {
-        $content = $challenge->show();
-        $status = $challenge->showStatus();
         return response()
-            ->json($content, $status);
+            ->json($challenge->content(), $challenge->status());
     }
 
     /**

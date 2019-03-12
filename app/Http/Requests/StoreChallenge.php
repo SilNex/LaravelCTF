@@ -4,11 +4,13 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use App\Helpers\JsonFormRequest;
+use App\Helpers\UsesCustomErrorMessage;
 
 
 class StoreChallenge extends FormRequest
 {
     // use JsonFormRequest;
+    use UsesCustomErrorMessage;
 
     /**
      * Determine if the user is authorized to make this request.
