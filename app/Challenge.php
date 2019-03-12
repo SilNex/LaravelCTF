@@ -26,36 +26,26 @@ class Challenge extends Model
 
     public function show()
     {
-        if ($this->checkVisible()) {
+        if ($this->visible()) {
             return response()
-            ->json($this, $this->showStatus());
+                ->json($this, 200);
         } else {
-            return $this->messages('before_show_at', true);
+            return response()
+                ->json($this->messages('before_show_at'), 403);
         }
     }
 
-    public function showStatus()
+    public function visible()
     {
-        return $this->checkVisible() ? 200 : 403;
+        return now() > $this->show_at;
     }
 
-    public  function messages($msgType, $returnToArray = false)
+    public  function messages($msgType)
     {
         $message = __("challenge.{$msgType}", [
             'date' => $this->show_at
         ]);
-
-        if ($returnToArray) {
-            return [
-                "message" => $message,
-            ];
-        } else {
-            return $message;
-        }
-    }
-
-    public function checkVisible()
-    {
-        return now() > $this->show_at;
+        
+        return $message;
     }
 }
