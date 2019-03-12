@@ -11,8 +11,8 @@ class ChallengeController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth');
-        $this->middleware('admin')->except('index');
+        // $this->middleware('auth');
+        // $this->middleware('admin')->except('index');
     }
 
     /**
@@ -37,10 +37,12 @@ class ChallengeController extends Controller
      */
     public function store(StoreChallenge $request)
     {
+
         $challenge = $request->validated();
 
         return response()
             ->json([
+                'message' => __('challenge.created'),
                 'id' => Challenge::create($challenge)->id,
             ], 201);
     }
@@ -69,14 +71,14 @@ class ChallengeController extends Controller
     public function update(StoreChallenge $request, Challenge $challenge)
     {
         $newChallenge = $request->validated();
-                
+
         $challenge->update($newChallenge);
 
         return response()
             ->json([
+                'message' => $challenge->messages('updated'),
                 'id' => $challenge->id,
             ], 202);
-
     }
 
     /**
@@ -87,6 +89,10 @@ class ChallengeController extends Controller
      */
     public function destroy(Challenge $challenge)
     {
-        //
+        $challenge->delete();
+        return response()
+            ->json([
+                'message' => $challenge->messages('deleted'),
+            ], 202);
     }
 }
