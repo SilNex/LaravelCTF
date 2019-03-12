@@ -34,6 +34,7 @@ class ChallengeTest extends TestCase
         $response
             ->assertStatus(201)
             ->assertJsonStructure([
+                'message',
                 'id',
             ]);
 
@@ -62,6 +63,7 @@ class ChallengeTest extends TestCase
         $response
             ->assertStatus(202)
             ->assertJsonStructure([
+                'message',
                 'id',
             ]);
 
@@ -71,5 +73,25 @@ class ChallengeTest extends TestCase
                 'title' => $newChallenge->title,
                 'flag' => $newChallenge->flag
             ]);
+    }
+
+    /** @test */
+    function deleteChallenge()
+    {
+        $challenge = factory(Challenge::class)
+            ->create();
+        
+        $response = $this
+            ->actingAs($this->admin)
+            ->json('DELETE', "/challenges/{$challenge->id}");
+        
+        $response
+            ->assertStatus(202)
+            ->assertJsonStructure([
+                'message',
+            ]);
+        
+        $this
+            ->assertDatabaseMissing('challenges', $challenge->toArray());
     }
 }
