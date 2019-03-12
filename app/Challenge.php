@@ -24,15 +24,14 @@ class Challenge extends Model
         return $this->hasMany('App\HallOfFame');
     }
 
-    public function show()
+    public function content()
     {
-        if ($this->visible()) {
-            return response()
-                ->json($this, 200);
-        } else {
-            return response()
-                ->json($this->messages('before_show_at'), 403);
-        }
+        return $this->visible() ? $this : $this->messages('before_show_at', true);
+    }
+
+    public function status()
+    {
+        return $this->visible() ? 200 : 403;
     }
 
     public function visible()
@@ -40,12 +39,12 @@ class Challenge extends Model
         return now() > $this->show_at;
     }
 
-    public  function messages($msgType)
+    public  function messages($msgType, $returnToArray)
     {
         $message = __("challenge.{$msgType}", [
             'date' => $this->show_at
         ]);
         
-        return $message;
+        return $returnToArray ? ['message' => $message] : $message;
     }
 }

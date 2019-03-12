@@ -114,7 +114,7 @@ return [
     'unique' => ':attribute은(는) 이미 사용 중입니다.',
     'uploaded' => ':attribute을(를) 업로드하지 못했습니다.',
     'url' => ':attribute 형식은 유효하지 않습니다.',
-    'uuid' => ':attribute는 유요한 UUID여야 합니다..',
+    'uuid' => ':attribute는 유요한 UUID여야 합니다.',
     /*
     |--------------------------------------------------------------------------
     | Custom Validation Language Lines

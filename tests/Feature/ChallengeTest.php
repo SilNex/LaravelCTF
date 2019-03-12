@@ -18,6 +18,23 @@ class ChallengeTest extends TestCase
         $this->admin = factory(User::class)->create([
             'privilege' => 10,
         ]);
+        $this->user = factory(User::class)->create();
+    }
+
+    /** @test */
+    function indexChallenge()
+    {
+        $challenge = factory(Challenge::class, 10)->create();
+
+        $this
+            ->actingAs($this->admin)
+            ->json('GET', '/challenges')
+            ->assertStatus(200);
+        
+        $this
+            ->actingAs($this->user)
+            ->json('GET', '/challenges')
+            ->assertStatus(403);
     }
 
     /** @test */
