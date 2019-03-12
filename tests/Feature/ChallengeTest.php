@@ -40,12 +40,8 @@ class ChallengeTest extends TestCase
         $this
             ->assertDatabaseHas('challenges', [
                 'title' => $challenge->title,
-                'description' => $challenge->description,
-            ]);
-
-        $this
-            ->assertDatabaseMissing('challenges', [
                 'flag' => $challenge->flag,
+                'description' => $challenge->description,
             ]);
     }
 
@@ -61,12 +57,12 @@ class ChallengeTest extends TestCase
 
         $response = $this
             ->actingAs($this->admin)
-            ->json('PUT', "/challenge/{$oldChallenge->id}", $newChallenge);
+            ->json('PUT', "/challenges/{$oldChallenge->id}", $newChallenge->toArray());
 
         $response
             ->assertStatus(202)
             ->assertJsonStructure([
-                'updated' => 'true',
+                'id',
             ]);
 
         $this

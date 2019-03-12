@@ -11,7 +11,8 @@ class ChallengeController extends Controller
 
     public function __construct()
     {
-        // $this->middleware('auth');
+        $this->middleware('auth');
+        $this->middleware('admin')->except('index');
     }
 
     /**
@@ -23,25 +24,25 @@ class ChallengeController extends Controller
     {
         $challenges = Challenge::all();
         $this->authorize('view', $challenges->random());
+
         return response()
-                    ->json($challenges);
+            ->json($challenges);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\StoreChallenge  $request
      * @return \Illuminate\Http\Response
      */
     public function store(StoreChallenge $request)
     {
         $challenge = $request->validated();
-        $challenge['flag'] = hash('sha256', $request->flag);
 
         return response()
-                    ->json([
-                        'id' => Challenge::create($challenge)->id,
-                    ], 201);
+            ->json([
+                'id' => Challenge::create($challenge)->id,
+            ], 201);
     }
 
     /**
@@ -52,28 +53,30 @@ class ChallengeController extends Controller
      */
     public function show(Challenge $challenge)
     {
-        if (now() < $challenge->show_at) {
-            return response(403)->json([
-                'message' => __('challenge.before_show_at', [
-                    'date' => $challenge->show_at
-                ]),
-            ]);
-        } else {
-            return response()
-                        ->json($challenge);
-        }
+        $content = $challenge->show();
+        $status = $challenge->showStatus();
+        return response()
+            ->json($content, $status);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\StoreChallenge  $request
      * @param  \App\Challenge  $challenge
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Challenge $challenge)
+    public function update(StoreChallenge $request, Challenge $challenge)
     {
-        //
+        $newChallenge = $request->validated();
+                
+        $challenge->update($newChallenge);
+
+        return response()
+            ->json([
+                'id' => $challenge->id,
+            ], 202);
+
     }
 
     /**
