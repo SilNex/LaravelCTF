@@ -115,6 +115,9 @@ return [
     'uploaded' => ':attribute을(를) 업로드하지 못했습니다.',
     'url' => ':attribute 형식은 유효하지 않습니다.',
     'uuid' => ':attribute는 유요한 UUID여야 합니다.',
+
+    'error_message' => '유효하지 않은 데이터입니다.',
+
     /*
     |--------------------------------------------------------------------------
     | Custom Validation Language Lines

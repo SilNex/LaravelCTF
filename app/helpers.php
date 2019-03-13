@@ -26,7 +26,7 @@ trait UsesCustomErrorMessage
    */
     protected function failedValidation(Validator $validator)
     {
-        $message = (method_exists($this, 'message')) ? $this->container->call([$this, 'message']) : '잘못된 데이터 형식입니다.';
+        $message = (method_exists($this, 'message')) ? $this->container->call([$this, 'message']) : __('validation.error_message');
 
         throw new HttpResponseException(
             response()
