@@ -17,13 +17,13 @@ trait JsonFormRequest
 trait UsesCustomErrorMessage
 {
     /**
-   * Handle a failed validation attempt.
-   *
-   * @param  \Illuminate\Contracts\Validation\Validator  $validator
-   * @return void
-   *
-   * @throws \Illuminate\Http\Exceptions\HttpResponseException
-   */
+     * Handle a failed validation attempt.
+     *
+     * @param  \Illuminate\Contracts\Validation\Validator  $validator
+     * @return void
+     *
+     * @throws \Illuminate\Http\Exceptions\HttpResponseException
+     */
     protected function failedValidation(Validator $validator)
     {
         $message = (method_exists($this, 'message')) ? $this->container->call([$this, 'message']) : __('validation.error_message');
