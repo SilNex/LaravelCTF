@@ -39,12 +39,24 @@ class Challenge extends Model
         return now() > $this->show_at;
     }
 
-    public  function messages($msgType, $returnToArray = false)
+    public function messages($msgType, $returnToArray = false)
     {
         $message = __("challenge.{$msgType}", [
-            'date' => $this->show_at
+            'date' => $this->show_at,
+            'title' => $this->title
         ]);
-        
+
         return $returnToArray ? ['message' => $message] : $message;
+    }
+
+    public function checkFlag($flag)
+    {
+        if ($this->visible()) {
+            return $this->flag === $flag
+                ? $this->messages('correct_flag')
+                : $this->messages('wrong_flag');
+        } else {
+            return $this->messages('before_show_at', true);
+        }
     }
 }

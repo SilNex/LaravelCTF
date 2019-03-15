@@ -5,4 +5,6 @@ return [
     'updated' => '수정되었습니다.',
     'deleted' => '삭제되었습니다.',
     'before_show_at' => '이 문제는 :date 이후에 시작됩니다!',
+    'correct_flag' => ':title solve!',
+    'wrong_flag' => '잘못된 FLAG입니다.',
 ];

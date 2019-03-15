@@ -7,9 +7,8 @@ use App\Challenge;
 
 class FlagAuthentication extends Controller
 {
-    public function compareFlag(Challenge $challenge, Request $request)
+    public function checkFlag(Challenge $challenge, Request $request)
     {
-        dd($challenge);
-        return $challenge->flag === $request->flag;
+        return $challenge->checkFlag($request->flag);
     }
 }
