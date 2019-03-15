@@ -39,7 +39,7 @@ class Challenge extends Model
         return now() > $this->show_at;
     }
 
-    public  function messages($msgType, $returnToArray)
+    public  function messages($msgType, $returnToArray = false)
     {
         $message = __("challenge.{$msgType}", [
             'date' => $this->show_at
