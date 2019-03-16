@@ -17,7 +17,7 @@ class FlagAuthentication extends Controller
     {
         if ($challenge->visible()) {
             if ($challenge->checkFlag($request->flag)) {
-                if ($challenge->giveScore(auth()->user())) {
+                if ($challenge->solveChallenge(auth()->user())) {
                     return response()
                         ->json($challenge->messages('correct_flag', true));
                 } else {

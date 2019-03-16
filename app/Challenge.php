@@ -59,7 +59,7 @@ class Challenge extends Model
         return $this->flag === $flag;
     }
 
-    public function giveScore(User $user)
+    public function solveChallenge(User $user)
     {
         // check solved
         $solved = $user
