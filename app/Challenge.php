@@ -24,6 +24,11 @@ class Challenge extends Model
         return $this->hasMany('App\HallOfFame');
     }
 
+    public function score()
+    {
+        return $this->hasMany('App\Score');
+    }
+
     public function content()
     {
         return $this->visible() ? $this : $this->messages('before_show_at', true);
@@ -51,12 +56,21 @@ class Challenge extends Model
 
     public function checkFlag($flag)
     {
-        if ($this->visible()) {
-            return $this->flag === $flag
-                ? $this->messages('correct_flag')
-                : $this->messages('wrong_flag');
+        return $this->flag === $flag;
+    }
+
+    public function giveScore(User $user)
+    {
+        // check solved
+        $solved = $user
+            ->score()
+            ->whereChallengeId($this->id)->count() > 0 ? true : false;
+        // or give point
+        if ($solved) {
+            return false;
         } else {
-            return $this->messages('before_show_at', true);
+            $this->score()->giveScore($user, $this);
+            return true;
         }
     }
 }

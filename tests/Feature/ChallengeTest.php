@@ -30,7 +30,7 @@ class ChallengeTest extends TestCase
             ->actingAs($this->admin)
             ->json('GET', '/challenges')
             ->assertStatus(200);
-        
+
         $this
             ->actingAs($this->user)
             ->json('GET', '/challenges')
@@ -97,17 +97,17 @@ class ChallengeTest extends TestCase
     {
         $challenge = factory(Challenge::class)
             ->create();
-        
+
         $response = $this
             ->actingAs($this->admin)
             ->json('DELETE', "/challenges/{$challenge->id}");
-        
+
         $response
             ->assertStatus(202)
             ->assertJsonStructure([
                 'message',
             ]);
-        
+
         $this
             ->assertDatabaseMissing('challenges', $challenge->toArray());
     }

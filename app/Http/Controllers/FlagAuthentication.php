@@ -7,8 +7,30 @@ use App\Challenge;
 
 class FlagAuthentication extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function checkFlag(Challenge $challenge, Request $request)
     {
-        return $challenge->checkFlag($request->flag);
+        if ($challenge->visible()) {
+            if ($challenge->checkFlag($request->flag)) {
+                if ($challenge->giveScore(auth()->user())) {
+                    return response()
+                        ->json($challenge->messages('correct_flag', true));
+                } else {
+                    return response()
+                        ->json($challenge->messages('already_solved', true));
+                }
+            } else {
+                return response()
+                    ->json($challenge->messages('wrong_flag', true));
+            }
+        } else {
+            return response()
+                ->json($challenge->messages('before_show_at', true));
+        }
     }
 }
