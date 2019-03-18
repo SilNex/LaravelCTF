@@ -13,7 +13,6 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
         factory(User::class)->state('silnex')->create();
-        factory(User::class, 3)->create();
-        factory(User::class, 2)->state('random_score')->create();
+        factory(User::class, 5)->create();
     }
 }
