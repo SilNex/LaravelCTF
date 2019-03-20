@@ -47,7 +47,7 @@ class User extends Authenticatable
         }
     }
 
-    public function score()
+    public function scores()
     {
         return $this->hasMany('App\Score');
     }

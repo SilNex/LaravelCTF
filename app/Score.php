@@ -23,7 +23,7 @@ class Score extends Model
         return $this->hasMany('App\ScoreLog');
     }
 
-    public function giveScore(User $user, Challenge $challenge)
+    public static function giveScore(User $user, Challenge $challenge)
     {
         $log = ScoreLog::create([
             'before_score' => $user->score,
@@ -34,7 +34,7 @@ class Score extends Model
             'score' => $user->score + $challenge->point
         ]);
 
-        $this->create([
+        Score::create([
             'user_id' => $user->id,
             'challenge_id' => $challenge->id,
             'log_id' => $log->id,

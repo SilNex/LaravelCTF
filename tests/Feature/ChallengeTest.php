@@ -27,14 +27,9 @@ class ChallengeTest extends TestCase
         $challenge = factory(Challenge::class, 10)->create();
 
         $this
-            ->actingAs($this->admin)
-            ->json('GET', '/challenges')
-            ->assertStatus(200);
-
-        $this
             ->actingAs($this->user)
             ->json('GET', '/challenges')
-            ->assertStatus(403);
+            ->assertStatus(200);
     }
 
     /** @test */
@@ -110,5 +105,32 @@ class ChallengeTest extends TestCase
 
         $this
             ->assertDatabaseMissing('challenges', $challenge->toArray());
+    }
+
+    /** @test */
+    function solveChallenge()
+    {
+        $this->withoutExceptionHandling();
+
+        $challenge = factory(Challenge::class)
+            ->create([
+                'show_at' => now()->subDay(),
+            ]);
+
+        $response = $this
+            ->actingAs($this->user)
+            ->json('POST', "/challenges/{$challenge->id}/flag", [
+                'flag' => $challenge->flag,
+            ]);
+
+        $response
+            ->assertStatus(201)
+            ->assertJsonStructure([
+                'message',
+            ]);
+
+        $this->assertTrue(
+            $this->user->score === $challenge->point,
+        );
     }
 }

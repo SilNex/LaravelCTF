@@ -63,13 +63,13 @@ class Challenge extends Model
     {
         // check solved
         $solved = $user
-            ->score()
+            ->scores()
             ->whereChallengeId($this->id)->count() > 0 ? true : false;
         // or give point
         if ($solved) {
             return false;
         } else {
-            $this->score()->giveScore($user, $this);
+            Score::giveScore($user, $this);
             return true;
         }
     }
