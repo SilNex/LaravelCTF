@@ -61,11 +61,9 @@ class Challenge extends Model
 
     public function solveChallenge(User $user)
     {
-        // check solved
         $solved = $user
-            ->scores()
+            ->score()
             ->whereChallengeId($this->id)->count() > 0 ? true : false;
-        // or give point
         if ($solved) {
             return false;
         } else {

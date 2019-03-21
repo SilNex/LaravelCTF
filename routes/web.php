@@ -21,4 +21,4 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::apiResource('challenges', 'ChallengeController');
 
-Route::post('/challenges/{challenge}/flag', 'FlagAuthentication@checkFlag');
+Route::post('/challenges/{challenge}', 'FlagAuthentication@checkFlag')->name('challenges.check_flag');

@@ -15,8 +15,10 @@ class CreateScoreLogsTable extends Migration
     {
         Schema::create('score_logs', function (Blueprint $table) {
             $table->increments('id');
+            $table->unsignedInteger('score_id');
             $table->integer('before_score');
             $table->integer('give_point');
+            $table->foreign('score_id')->references('id')->on('scores')->onDelete('cascade');
             $table->timestamps();
         });
     }

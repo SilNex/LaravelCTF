@@ -16,14 +16,9 @@ $factory->state(App\Score::class, 'with_user_chall', function (Faker $faker) {
     $user->update([
         'score' => $user->score + $challenge->point,
     ]);
+    $this->giveScore($user, $challenge);
     return [
         'user_id' => $user->id,
         'challenge_id' => $challenge->id,
-        'log_id' => function () {
-            return App\ScoreLog::create([
-                'before_score' => $user->score,
-                'give_point' => $challenge->point,
-            ])->id;
-        },
     ];
 });
