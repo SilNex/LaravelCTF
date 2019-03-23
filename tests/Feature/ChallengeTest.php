@@ -119,7 +119,7 @@ class ChallengeTest extends TestCase
 
         $response = $this
             ->actingAs($this->user)
-            ->json('POST', "/challenges/{$challenge->id}/flag", [
+            ->json('POST', "/challenges/{$challenge->id}", [
                 'flag' => $challenge->flag,
             ]);
 
