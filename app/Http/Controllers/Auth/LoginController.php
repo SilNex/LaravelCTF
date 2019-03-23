@@ -29,7 +29,10 @@ class LoginController extends Controller
 
     public function showLoginForm()
     {
-        return redirect('/');
+        return response()
+            ->json([
+                'message' => 'Need Login',
+            ], 401);
     }
 
     /**
