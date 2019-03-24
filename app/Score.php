@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Events\ScoreChange;
 
 class Score extends Model
 {
@@ -30,11 +31,12 @@ class Score extends Model
             'challenge_id' => $challenge->id,
         ]);
         
-        ScoreLog::create([
-            'score_id' => $score->id,
-            'before_score' => $user->score,
-            'give_point' => $challenge->point,
-        ]);
+        // ScoreLog::create([
+        //     'score_id' => $score->id,
+        //     'before_score' => $user->score,
+        //     'give_point' => $challenge->point,
+        // ]);
+        event(new ScoreChange($score, $user, $challenge));
 
         $user->update([
             'score' => $user->score + $challenge->point
