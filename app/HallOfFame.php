@@ -17,4 +17,13 @@ class HallOfFame extends Model
     {
         return $this->belongsTo('App\User');
     }
+
+    public function registeHallOfFrame(User $user, Challenge $challenge, $point)
+    {
+        HallOfFame::create([
+            'point' => $point,
+            'user_id' => $user->id,
+            'challenge_id' => $challenge->id,
+        ]);
+    }
 }
