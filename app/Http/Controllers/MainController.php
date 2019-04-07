@@ -15,7 +15,7 @@ class MainController extends Controller
     {
         return response()
             ->json([
-                'message' => 'Hello world!';
-            ])
+                'message' => 'Hello world!',
+            ]);
     }
 }
