@@ -27,13 +27,13 @@ class LoginController extends Controller
      */
     protected $redirectTo = '/home';
 
-    public function showLoginForm()
-    {
-        return response()
-            ->json([
-                'message' => 'Need Login',
-            ], 401);
-    }
+    // public function showLoginForm()
+    // {
+    //     return response()
+    //         ->json([
+    //             'message' => 'Need Login',
+    //         ], 401);
+    // }
 
     /**
      * Create a new controller instance.
