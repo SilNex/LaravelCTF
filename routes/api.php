@@ -16,3 +16,17 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('/', function () {
+    return view('welcome');
+});
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Route::apiResource('challenges', 'ChallengeController');
+
+Route::post('/challenges/{challenge}', 'FlagAuthentication@checkFlag')->name('challenges.check_flag');
+
+Route::get('/', 'MainController@index')->name('main');
