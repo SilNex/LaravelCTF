@@ -23,4 +23,4 @@ Route::apiResource('challenges', 'ChallengeController');
 
 Route::post('/challenges/{challenge}', 'FlagAuthentication@checkFlag')->name('challenges.check_flag');
 
-Route::get('/', 'MainController@index')->name('main');
+// Route::get('/', 'MainController@index')->name('main');

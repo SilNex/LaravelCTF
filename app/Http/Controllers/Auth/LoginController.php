@@ -27,13 +27,14 @@ class LoginController extends Controller
      */
     protected $redirectTo = '/home';
 
-    // public function showLoginForm()
-    // {
-    //     return response()
-    //         ->json([
-    //             'message' => 'Need Login',
-    //         ], 401);
-    // }
+    public function showLoginForm()
+    {
+        // return view('auth.login');
+        return response()
+            ->json([
+                'message' => 'Need Login',
+            ], 401);
+    }
 
     /**
      * Create a new controller instance.
